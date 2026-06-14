@@ -658,7 +658,9 @@ img, video { display: block; max-width: 100%; }
     currentTime += (targetTime - currentTime) * 0.12;
     if (Math.abs(targetTime - currentTime) < 0.0008) currentTime = targetTime;
 
-    if (duration > 0 && video.readyState >= 2) {
+    // Avoid queuing seeks faster than the decoder can paint them — that
+    // overload is what leaves the video stuck on a black frame.
+    if (duration > 0 && video.readyState >= 2 && !video.seeking) {
       try { video.currentTime = currentTime; } catch (e) {}
     }
 
@@ -666,9 +668,33 @@ img, video { display: block; max-width: 100%; }
     rafId = requestAnimationFrame(tick);
   }
 
+  // A paused <video> that has never played often refuses to render a
+  // seeked frame (shows black). Briefly playing it muted "wakes" the
+  // decode pipeline so subsequent scroll-driven seeks paint correctly.
+  function primeVideo() {
+    const p = video.play();
+    if (p && typeof p.then === "function") {
+      p.then(() => {
+        video.pause();
+        try { video.currentTime = currentTime || 0.001; } catch (e) {}
+      }).catch(() => {
+        // Autoplay blocked (e.g. iOS): prime on the first user gesture.
+        const gesture = () => {
+          video.play().then(() => video.pause()).catch(() => {});
+          window.removeEventListener("touchstart", gesture);
+          window.removeEventListener("scroll", gesture);
+        };
+        window.addEventListener("touchstart", gesture, { passive: true, once: true });
+        window.addEventListener("scroll", gesture, { passive: true, once: true });
+      });
+    } else {
+      try { video.pause(); } catch (e) {}
+    }
+  }
+
   function startScrub() {
     duration = video.duration || 10;
-    video.pause();
+    primeVideo();
     if (reduceMotion) {
       // Reduced motion: jump per-scene instead of continuous scrub.
       currentTime = targetTime = 0;
