@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>THE RESIDENCE ｜ 上質な暮らしを、この一邸に。</title>
+  <meta name="description" content="光と緑に包まれた邸宅。外観・玄関・リビング・キッチン・中庭まで、スクロールに合わせて巡る上質な住まいのご紹介。" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Serif+JP:wght@300;400;500;600&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- Loading -->
+  <div class="loader" id="loader">
+    <div class="loader__inner">
+      <span class="loader__mark">THE RESIDENCE</span>
+      <div class="loader__bar"><span id="loaderBar"></span></div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="header" id="header">
+    <a href="#" class="header__logo">THE&nbsp;RESIDENCE</a>
+    <nav class="header__nav">
+      <a href="#exterior">外観</a>
+      <a href="#entrance">玄関</a>
+      <a href="#living">リビング</a>
+      <a href="#kitchen">キッチン</a>
+      <a href="#courtyard">中庭</a>
+    </nav>
+    <a href="#contact" class="header__cta">資料請求</a>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero__copy">
+      <p class="hero__sub">PREMIUM RESIDENCE</p>
+      <h1 class="hero__title">
+        光と、緑と、<br />静けさに住まう。
+      </h1>
+      <p class="hero__lead">外観から中庭まで、すべてが上質。<br />スクロールして、邸宅をひと巡りしてください。</p>
+    </div>
+    <div class="hero__scroll">
+      <span>SCROLL</span>
+      <i></i>
+    </div>
+  </section>
+
+  <!-- Scroll-driven film section -->
+  <section class="film" id="film">
+    <div class="film__sticky">
+      <video
+        id="walkthrough"
+        class="film__video"
+        src="assets/walkthrough.mp4"
+        muted
+        playsinline
+        preload="auto"
+        webkit-playsinline
+      ></video>
+      <div class="film__overlay"></div>
+
+      <!-- Captions for each area -->
+      <div class="captions">
+        <article class="caption" data-scene="exterior" id="exterior">
+          <span class="caption__no">01</span>
+          <p class="caption__en">EXTERIOR</p>
+          <h2 class="caption__title">外観</h2>
+          <p class="caption__text">街並みに調和しながらも、凛とした存在感。<br />重厚な軒と深い陰影が、訪れる人を静かに迎えます。</p>
+        </article>
+
+        <article class="caption" data-scene="entrance" id="entrance">
+          <span class="caption__no">02</span>
+          <p class="caption__en">ENTRANCE</p>
+          <h2 class="caption__title">玄関</h2>
+          <p class="caption__text">天井まで伸びる開口から差し込む自然光。<br />帰宅のたびに心を整える、上質なアプローチ。</p>
+        </article>
+
+        <article class="caption" data-scene="living" id="living">
+          <span class="caption__no">03</span>
+          <p class="caption__en">LIVING</p>
+          <h2 class="caption__title">リビング</h2>
+          <p class="caption__text">大開口の窓が外と内をやわらかくつなぐ。<br />家族が自然と集う、開放感あふれる主室。</p>
+        </article>
+
+        <article class="caption" data-scene="kitchen" id="kitchen">
+          <span class="caption__no">04</span>
+          <p class="caption__en">KITCHEN</p>
+          <h2 class="caption__title">キッチン</h2>
+          <p class="caption__text">機能美を追求したアイランドキッチン。<br />料理する時間そのものを、豊かな体験へ。</p>
+        </article>
+
+        <article class="caption" data-scene="courtyard" id="courtyard">
+          <span class="caption__no">05</span>
+          <p class="caption__en">COURTYARD</p>
+          <h2 class="caption__title">中庭</h2>
+          <p class="caption__text">緑を囲む、もうひとつのリビング。<br />四季の移ろいを、暮らしのすぐそばに。</p>
+        </article>
+      </div>
+
+      <!-- Progress indicator -->
+      <div class="progress" aria-hidden="true">
+        <ul class="progress__list">
+          <li data-i="0"><span></span>外観</li>
+          <li data-i="1"><span></span>玄関</li>
+          <li data-i="2"><span></span>リビング</li>
+          <li data-i="3"><span></span>キッチン</li>
+          <li data-i="4"><span></span>中庭</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Spec / Details -->
+  <section class="spec">
+    <div class="spec__head reveal">
+      <p class="spec__en">PROPERTY OVERVIEW</p>
+      <h2 class="spec__title">細部にまで宿る、<br class="sp-br" />住まいの品格。</h2>
+    </div>
+    <div class="spec__grid">
+      <div class="spec__item reveal"><dt>所在地</dt><dd>東京都 世田谷区（最寄駅 徒歩7分）</dd></div>
+      <div class="spec__item reveal"><dt>土地面積</dt><dd>198.45㎡（約60坪）</dd></div>
+      <div class="spec__item reveal"><dt>延床面積</dt><dd>142.30㎡（約43坪）</dd></div>
+      <div class="spec__item reveal"><dt>間取り</dt><dd>4LDK ＋ 中庭 ＋ 書斎</dd></div>
+      <div class="spec__item reveal"><dt>構造</dt><dd>木造 地上2階建</dd></div>
+      <div class="spec__item reveal"><dt>引渡し</dt><dd>2026年 秋 予定</dd></div>
+    </div>
+  </section>
+
+  <!-- Feature strip -->
+  <section class="features">
+    <div class="feature reveal">
+      <p class="feature__no">— 01</p>
+      <h3>採光設計</h3>
+      <p>すべての主要室に、自然光が届く。一日の光の移ろいを愉しむ住まい。</p>
+    </div>
+    <div class="feature reveal">
+      <p class="feature__no">— 02</p>
+      <h3>中庭という贅沢</h3>
+      <p>外からの視線を遮りながら、室内に緑とプライベートな開放感を。</p>
+    </div>
+    <div class="feature reveal">
+      <p class="feature__no">— 03</p>
+      <h3>上質な素材</h3>
+      <p>無垢材、石、左官。経年とともに深まる本物の質感を選び抜きました。</p>
+    </div>
+  </section>
+
+  <!-- CTA / Contact -->
+  <section class="contact" id="contact">
+    <div class="contact__inner reveal">
+      <p class="contact__en">CONTACT</p>
+      <h2 class="contact__title">この邸宅を、<br />実際にご覧ください。</h2>
+      <p class="contact__lead">内覧・資料請求は随時受け付けております。<br />専任スタッフが丁寧にご案内いたします。</p>
+      <a href="mailto:info@the-residence.example" class="contact__btn">資料請求・内覧予約</a>
+      <p class="contact__tel">TEL 0120-000-000（受付 10:00 - 18:00 / 水曜定休）</p>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p class="footer__logo">THE RESIDENCE</p>
+    <p class="footer__copy">© 2026 THE RESIDENCE. All Rights Reserved.</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
