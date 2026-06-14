@@ -16,10 +16,10 @@
 
 ## 構成
 
+CSS・JavaScript はすべて `index.html` に内包した単体HTML構成です。
+
 ```
-index.html          ページ本体
-css/style.css       スタイル
-js/main.js          スクロール連動・スクラブ制御
+index.html              ページ本体（CSS / JS インライン）
 assets/walkthrough.mp4  ウォークスルー動画
 ```
 
@@ -35,5 +35,5 @@ python3 -m http.server 8000
 ## カスタマイズ
 
 - 紹介文・物件概要は `index.html` のテキストを編集してください。
-- スクラブ速度は `css/style.css` の `.film { height: 600vh; }` で調整できます（値を大きくするとゆっくり）。
-- 映像送りのなめらかさは `js/main.js` の lerp 係数 `0.12` で調整できます。
+- スクラブ速度は `index.html` 内の `.film { height: 600vh; }` で調整できます（値を大きくするとゆっくり）。
+- 映像送りのなめらかさは `index.html` 内の lerp 係数 `0.12` で調整できます。
