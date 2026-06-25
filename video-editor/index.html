@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AI動画編集スタジオ ｜ 素材を選ぶだけでプロ品質の動画に</title>
+<meta name="description" content="写真・動画素材をアップロードし、スタイルを選ぶだけでプロ並みの編集精度の動画が自動生成される、ブラウザ完結型の動画編集アプリ。" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header class="app-header">
+  <div class="brand">
+    <span class="brand-mark">AI</span>
+    <div class="brand-text">
+      <h1>動画編集スタジオ</h1>
+      <p>素材を渡して、スタイルを選ぶだけ。</p>
+    </div>
+  </div>
+  <div class="header-status" id="headerStatus">STEP 1 / 4 ｜ 素材を追加してください</div>
+</header>
+
+<main class="app-main">
+
+  <!-- STEP 1: 素材 -->
+  <section class="panel" id="panelMaterials">
+    <h2><span class="step-no">1</span>素材を追加</h2>
+    <p class="hint">写真・動画をまとめてドラッグ＆ドロップ。並び替え・トリミング・キャプションも編集できます。</p>
+
+    <div class="dropzone" id="dropzone" tabindex="0">
+      <input type="file" id="fileInput" accept="image/*,video/*" multiple hidden />
+      <div class="dropzone-inner">
+        <div class="dropzone-icon">＋</div>
+        <p>クリック、またはドラッグ＆ドロップで素材を追加</p>
+        <span class="dropzone-sub">JPEG / PNG / MP4 / MOV など</span>
+      </div>
+    </div>
+
+    <ul class="material-list" id="materialList"></ul>
+
+    <div class="music-row">
+      <label class="music-label">
+        <span>BGM（任意）</span>
+        <input type="file" id="musicInput" accept="audio/*" hidden />
+        <button class="btn btn-ghost" id="musicBtn" type="button">音楽ファイルを選ぶ</button>
+      </label>
+      <span class="music-name" id="musicName">未選択</span>
+      <label class="vol-row">
+        <span>音量</span>
+        <input type="range" id="musicVolume" min="0" max="1" step="0.01" value="0.8" />
+      </label>
+      <button class="btn btn-ghost btn-sm" id="musicRemove" type="button" hidden>削除</button>
+    </div>
+  </section>
+
+  <!-- STEP 2: スタイル -->
+  <section class="panel" id="panelStyle">
+    <h2><span class="step-no">2</span>スタイルを選択</h2>
+    <p class="hint">選んだスタイルに合わせて、色調・トランジション・テンポ・テキストが自動で決まります。</p>
+    <div class="template-grid" id="templateGrid"></div>
+  </section>
+
+  <!-- STEP 3: プレビュー -->
+  <section class="panel" id="panelPreview">
+    <h2><span class="step-no">3</span>プレビュー</h2>
+    <p class="hint">自動生成されたタイムラインをその場で確認できます。素材の順番やトリミングを変えると即時に反映されます。</p>
+
+    <div class="title-fields">
+      <label>タイトル
+        <input type="text" id="projectTitle" placeholder="例）THE RESIDENCE" maxlength="40" />
+      </label>
+      <label>エンドカード
+        <input type="text" id="endText" placeholder="例）ご相談はお気軽に" maxlength="40" />
+      </label>
+    </div>
+
+    <div class="stage">
+      <canvas id="stageCanvas" width="1280" height="720"></canvas>
+      <div class="stage-empty" id="stageEmpty">素材を追加するとプレビューが表示されます</div>
+    </div>
+
+    <div class="transport">
+      <button class="btn btn-icon" id="playBtn" type="button" disabled>▶</button>
+      <span class="time" id="timeNow">0:00</span>
+      <input type="range" id="seekBar" min="0" max="1000" value="0" disabled />
+      <span class="time" id="timeTotal">0:00</span>
+    </div>
+  </section>
+
+  <!-- STEP 4: 書き出し -->
+  <section class="panel" id="panelExport">
+    <h2><span class="step-no">4</span>書き出し</h2>
+    <p class="hint">ブラウザ内でレンダリングし、WebM形式の動画ファイルとして書き出します。</p>
+    <div class="export-row">
+      <button class="btn btn-primary" id="exportBtn" type="button" disabled>動画を書き出す</button>
+      <div class="export-progress" id="exportProgress" hidden>
+        <div class="export-progress-bar"><div id="exportProgressFill"></div></div>
+        <span id="exportProgressLabel">0%</span>
+      </div>
+      <a class="btn btn-primary" id="downloadLink" hidden download="edited-video.webm">ダウンロード</a>
+    </div>
+    <p class="export-note">※ 出力はWebM形式です。BGMを設定した場合は音声も合成されます。元動画の音声はミックスされません（自動編集はBGM主体の構成です）。</p>
+  </section>
+
+</main>
+
+<footer class="app-footer">
+  <p>すべての処理はこのブラウザ内で完結します。素材や生成された動画は外部サーバーへ送信されません。</p>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
